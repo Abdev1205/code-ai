@@ -49,3 +49,8 @@
 body {
   font-family: nunito, sans-serif;
 }
+
+/* .main-bg {
+  background: rgb(38, 38, 39);
+  background: radial-gradient(circle, rgba(50, 50, 51, 1) 0%, rgba(0, 0, 0, 1) 48%, rgba(0, 0, 0, 1) 42%);
+} */

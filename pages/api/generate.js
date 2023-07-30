@@ -11,7 +11,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = "Only send the code. Send html css and js in object";
+const basePromptPrefix = "Only send the code in text format and nothing else only give html css and javascript in html file and internal css using script tag only in text format as code blocks";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
