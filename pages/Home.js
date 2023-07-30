@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import CircularProgress from '@mui/material/CircularProgress';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const Home = () => {
   const [apiOutput, setApiOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [userInput, setUserInput] = useState("");
+  const [prompt, setPrompt] = useState(false);
 
   const onUserChangedText = (e) => {
     setUserInput(e.target.value);
   };
 
   const callGenerateEndpoint = async () => {
+    if (prompt == false && apiOutput) {
+      setPrompt(true)
+    }
     setIsGenerating(true);
 
     console.log("Calling server-side API...");
@@ -44,7 +50,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="h-[100vh] flex flex-col justify-center  overflow-clip bg-black relative  ">
+      <div className={` ${prompt ? "h-auto" : "h-[100vh]"}  flex flex-col justify-center  overflow-clip bg-black relative  `}>
         <Image
           src={'/assets/circle.svg'}
           alt={'right-tick'} height={500} width={500}
@@ -80,9 +86,10 @@ const Home = () => {
           </div>
           {apiOutput && (
             <div className="output mt-4 bg-gray-50 p-4 rounded-md">
-              <h3 className="font-bold mb-2">Output</h3>
-              <p>{apiOutput.text}</p>
-              {/* <div dangerouslySetInnerHTML={{ __html: apiOutput.text }} /> */}
+              <h3 className="font-bold mb-2">Website Code</h3>
+              <SyntaxHighlighter language="html" style={dark}>
+                {apiOutput.text}
+              </SyntaxHighlighter>
             </div>
           )}
         </div>

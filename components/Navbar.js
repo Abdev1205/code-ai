@@ -4,7 +4,7 @@ import Image from 'next/image'
 const Navbar = () => {
   return (
     <div>
-      <nav className=' bg-black fixed h-[4rem] z-[100] top-[1rem] w-[100%] flex justify-between items-center ' >
+      <nav className=' bg-black fixed h-[4rem] z-[100] top-[0rem]  w-[100%] flex justify-between items-center ' >
         <div className=' ml-[2rem] ' >
           <Image
             src={'/assets/codeAI.svg'}

@@ -4,8 +4,11 @@ import Navbar from "@/components/Navbar"
 const index = () => {
   return (
     <>
-      <Navbar />
-      <Home />
+      <div className=" bg-black  " >
+
+        <Navbar />
+        <Home />
+      </div>
     </>
   )
 }
