@@ -16,26 +16,27 @@ const Home = () => {
 
     console.log("Calling server-side API...");
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
+      const response = await fetch('/api/generate', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ userInput }),
       });
 
       if (!response.ok) {
-        throw new Error("API request failed");
+        throw new Error('API request failed');
       }
 
       const data = await response.json();
       const { output } = data;
-      console.log("API response received...", output.text);
+      console.log("API response received...", output);
 
-      setApiOutput(`${output.text}`);
+      setApiOutput(output);
+      console.log(output) // Assuming 'output' is a string received from the API
     } catch (error) {
-      console.error("Error while calling the API:", error);
-      setApiOutput("Error while generating text. Please try again later.");
+      console.error('Error while calling the API:', error);
+      setApiOutput('Error while generating text. Please try again later.');
     } finally {
       setIsGenerating(false);
     }
@@ -67,7 +68,7 @@ const Home = () => {
         {apiOutput && (
           <div className="output mt-4 bg-gray-50 p-4 rounded-md">
             <h3 className="font-bold mb-2">Output</h3>
-            <p>{apiOutput}</p>
+            <div dangerouslySetInnerHTML={{ __html: apiOutput.text }} />
           </div>
         )}
       </div>
